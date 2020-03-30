@@ -8,12 +8,9 @@ type Props = {
 export function Agreement({ onAgree }: Props) {
   return (
     <>
-      <div
-        className="app-width flex-column"
-        style={{ alignItems: "center", marginTop: 16 }}
-      >
-        <h2 style={{ textAlign: "center" }}>COVID-19 Incubation Calculator</h2>
-        <ul style={{ width: "app-width" }}>
+      <div className="app-width flex-column flex-cross-axis-center mt16">
+        <h2 className="text-center">COVID-19 Incubation Calculator</h2>
+        <ul className="app-width">
           <li>
             The incubation period is the time between catching the disease and
             showing symptoms

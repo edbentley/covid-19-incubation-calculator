@@ -51,6 +51,14 @@ h2 {
   flex-direction: column;
 }
 
+.flex-cross-axis-center {
+  align-items: center;
+}
+
+.flex-cross-axis-start {
+  align-items: flex-start;
+}
+
 .app-width {
   width: 608px;
 }
@@ -58,6 +66,10 @@ h2 {
   .app-width {
     width: calc(100% - 16px);
   }
+}
+
+.w50p {
+  width: 50%;
 }
 
 .o0 {
@@ -86,6 +98,22 @@ h2 {
   user-select: none;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
 .m0 {
   margin: 0;
+}
+
+.mb8 {
+  margin-bottom: 8px;
+}
+
+.mt16 {
+  margin-top: 16px;
 }

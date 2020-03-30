@@ -14,10 +14,10 @@ export function Calculator() {
   return (
     <div className="app-width flex-column" ref={ref}>
       <div
-        className="flex-column"
-        style={{ margin: "32px 0", alignItems: "flex-start" }}
+        className="flex-column flex-cross-axis-start"
+        style={{ margin: "32px 0" }}
       >
-        <label htmlFor="date-picker" style={{ marginBottom: 8 }}>
+        <label htmlFor="date-picker" className="mb8">
           <span className="no-select">
             Select most recent time you could have been exposed to COVID-19
           </span>

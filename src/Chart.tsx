@@ -112,7 +112,7 @@ export function Chart({ startDate, appWidth }: Props) {
 
   return (
     <>
-      <p className="m0 no-select" style={{ width: "50%", fontSize: 16 }}>
+      <p className="m0 no-select font16 w50p">
         Likelihood you're still in incubation period if infected on{" "}
         {dateToText(startDate)}
       </p>
