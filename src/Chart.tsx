@@ -110,6 +110,40 @@ export function Chart({ startDate, appWidth }: Props) {
     };
   }, [isDragging]);
 
+  // arrow keys
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        setEndDate(
+          (currDate) =>
+            new Date(
+              clamp(
+                currDate.getTime() - halfDayMs,
+                startTimeMs,
+                startTimeMs + maxMs
+              )
+            )
+        );
+      } else if (e.key === "ArrowRight") {
+        setEndDate(
+          (currDate) =>
+            new Date(
+              clamp(
+                currDate.getTime() + halfDayMs,
+                startTimeMs,
+                startTimeMs + maxMs
+              )
+            )
+        );
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [startTimeMs]);
+
   return (
     <>
       <p className="m0 no-select font16 w50p">
@@ -124,13 +158,23 @@ export function Chart({ startDate, appWidth }: Props) {
           return (
             <g key={index}>
               <line x1={x} x2={x} y1={xAxisY} y2={xAxisY + 5} stroke="grey" />
-              <text x={x} y={xAxisY + 16} textAnchor="middle">
+              <text
+                x={x}
+                y={xAxisY + 16}
+                textAnchor="middle"
+                aria-hidden={true}
+              >
                 {index + 1}
               </text>
             </g>
           );
         })}
-        <text className="fill-black" x={x0 + xWidth + 8} y={xAxisY + 4}>
+        <text
+          className="fill-black"
+          x={x0 + xWidth + 8}
+          y={xAxisY + 4}
+          aria-hidden={true}
+        >
           Days
         </text>
         {/* Y axis */}
@@ -140,7 +184,7 @@ export function Chart({ startDate, appWidth }: Props) {
           return (
             <g key={index}>
               <line x1={x0} x2={x0 - 5} y1={y} y2={y} stroke="grey" />
-              <text x={x0 - 8} y={y + 4} textAnchor="end">
+              <text x={x0 - 8} y={y + 4} textAnchor="end" aria-hidden={true}>
                 {100 - index * 20}%
               </text>
             </g>
@@ -207,6 +251,7 @@ export function Chart({ startDate, appWidth }: Props) {
               x={todayX}
               y={y0 + yHeight - 14}
               textAnchor="middle"
+              aria-hidden={true}
             >
               Now
             </text>
@@ -371,6 +416,7 @@ export function Chart({ startDate, appWidth }: Props) {
 }
 
 const maxMs = daysToMs(MAX_DAYS);
+const halfDayMs = daysToMs(0.5);
 
 const clamp = (val: number, min: number, max: number) =>
   Math.max(Math.min(val, max), min);
